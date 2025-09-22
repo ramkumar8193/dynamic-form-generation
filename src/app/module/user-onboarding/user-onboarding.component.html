@@ -1,0 +1,10 @@
+<div class="flex w-full p-2">
+    <mat-tab-group class="w-full" (selectedTabChange)="onTabChange($event)">
+        <mat-tab label="User Onboarding">
+            <app-dynamic-form [formSchema]="onboardingFormSchema" [isFrom]="isFrom"></app-dynamic-form>
+        </mat-tab>
+        <mat-tab label="User Login">
+            <app-dynamic-form [formSchema]="loginFormSchema" [isFrom]="isFrom"></app-dynamic-form>
+        </mat-tab>
+    </mat-tab-group>
+</div>
