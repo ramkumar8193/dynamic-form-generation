@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -22,6 +22,7 @@ export class DynamicFormComponent {
 
   @Input() formSchema: any = [];
   @Input() isFrom: string = '';
+  @Output() emitFormData = new EventEmitter<string>();
   public commonForm!: FormGroup;
 
   constructor(private fb: FormBuilder) { }
@@ -46,6 +47,7 @@ export class DynamicFormComponent {
   onSubmit() {
     if (this.commonForm.valid) {
       console.log('Form Submitted:', this.commonForm.value);
+      this.emitFormData.emit(this.commonForm.value)
     } else {
       this.commonForm.markAllAsTouched();
     }
