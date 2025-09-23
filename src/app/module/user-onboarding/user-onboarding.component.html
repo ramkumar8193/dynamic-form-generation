@@ -1,10 +1,28 @@
-<div class="flex w-full p-2">
-    <mat-tab-group class="w-full" (selectedTabChange)="onTabChange($event)">
-        <mat-tab label="User Onboarding">
-            <app-signup></app-signup>
-        </mat-tab>
-        <mat-tab label="User Login">
-            <app-signin></app-signin>
-        </mat-tab>
-    </mat-tab-group>
+<div class="w-full bg-[#1a132b] overflow-hidden flex">
+
+    <!-- Left Side (Image + Info) -->
+    <div class="w-0 md:w-1/2 relative">
+
+        <!-- Logo -->
+        <div class="absolute top-6 left-6 flex items-center space-x-2">
+            <div class="w-4 h-4 rounded-full bg-yellow-400"></div>
+            <span class="text-white font-semibold text-lg">Voltrex</span>
+        </div>
+        <img src="cryptocurrency.jpg" alt="User with phone" class="w-full h-full object-cover">
+
+    </div>
+
+    <div class="w-full md:w-1/2 pt-4 flex flex-col justify-center items-center px-10 text-white">
+        <h1 class="text-2xl font-bold mb-6">Welcome to Voltrex</h1>
+
+        <!-- Form -->
+        <mat-tab-group class="w-full" (selectedTabChange)="onTabChange($event)">
+            <mat-tab label="User Onboarding">
+                <app-signup></app-signup>
+            </mat-tab>
+            <mat-tab label="User Login">
+                <app-signin></app-signin>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
 </div>

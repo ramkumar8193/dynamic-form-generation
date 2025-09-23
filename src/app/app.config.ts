@@ -8,5 +8,5 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { signupReducer } from './shared/store/formData.reducer';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideStore({ signup: signupReducer }), provideEffects(), provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() })]
+  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideStore({ updateSignupFormData: signupReducer }), provideEffects(), provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() })]
 };

@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { updateSignupFormData } from './signup.actions';
+import { updateLoginFormData, updateSignupFormData } from './signup.actions';
 
 export interface SignupState {
     formData: any;
@@ -14,5 +14,10 @@ export const signupReducer = createReducer(
     on(updateSignupFormData, (state, { formData }) => ({
         ...state,
         formData: formData
+    })),
+
+    on(updateLoginFormData, (state, { loginData }) => ({
+        ...state,
+        loginData
     }))
 );

@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { DynamicFormComponent } from '../../shared/dynamic-form/dynamic-form.component';
 import { onboardingSchema } from '../../assets/mock/form.schema';
 import { Store } from '@ngrx/store';
 import { updateSignupFormData } from '../../shared/store/signup.actions';
-import { Observable } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-signup',
@@ -11,13 +11,15 @@ import { Observable } from 'rxjs';
     DynamicFormComponent,
   ],
   templateUrl: './signup.component.html',
-  styleUrl: './signup.component.scss'
+  styleUrl: './signup.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SignupComponent implements OnInit {
 
   public onboardingFormSchema: any = [];
   public isFrom: string = 'onboarding';
   public receiveSignupdata$: any;
+  private _snackBar = inject(MatSnackBar);
 
   constructor(
     private store: Store
@@ -46,7 +48,14 @@ export class SignupComponent implements OnInit {
       console.log(this.receiveSignupdata$)
       this.receiveSignupdata$.subscribe((data: any) => {
         console.log(data)
-      })
+        if (data) {
+          this._snackBar.open('User has been onboarded successfully.', '', {
+            horizontalPosition: 'end',
+            verticalPosition: 'top',
+            duration: 5 * 1000,
+          });
+        }
+      });
     }
   }
 }
